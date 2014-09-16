@@ -1,19 +1,29 @@
 <html>
     <head>
         <title>Demo</title>
+        
         <script src="js/block.js"></script>
         <script src="js/block.stage.js"></script>
         <script src="js/block.shape_config.js"></script>
         <script src="js/block.shape.js"></script>
+        <script src="js/block.event.js"></script>
+        <script src="js/block.event.keyevent.js"></script>
+       
+        <style>
+            canvas{
+                position:  absolute;
+                left:0;
+                top: 0;
+            }
+        </style>
     </head>
     <body>
         <div id="container"></div>
     
         <script>
-            block.stage.init();
-            var a=new block.shape(block.shape_config[4]);
+            block.init();
+            block.start();
 
-            a.render();
         </script>    
     </body>
     

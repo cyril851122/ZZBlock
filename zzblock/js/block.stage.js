@@ -1,7 +1,7 @@
 block.stage={
     
-    _width: 10,
-    _height:20,
+    _width: 8,
+    _height:16,
 
     _background_start:"#EEEEFF",
     _background_end: "#DDEEEE",
@@ -11,18 +11,32 @@ block.stage={
    
     
     build_map:function(){
-        var row=[];
-        for(var i=0 ; i<block.stage._width;i++){
-            row.push(0);
-        }
+
         for(var j=0; j<block.stage._height;j++){
+            var row=[];
+            for(var i=0 ; i<block.stage._width;i++){
+                row.push(0);
+            }
             block.stage._map.push(row);
         }
     },
-    
+    erase:function(indexes){
+        
+        for (var i in indexes){
+            block.stage._map.splice(indexes[i],1);
+            var row=[];
+            for(var i=0 ; i<block.stage._width;i++){
+                row.push(0);
+            }
+            block.stage._map.unshift(row);
+        }
+       
+        block.stage.render();
+    },
     draw_stage:function(){
         var stage_canvas=document.createElement("canvas");
-        stage_canvas.id="block_stage";
+        stage_canvas.id="background_stage";
+        stage_canvas.style="position: absolute; left: 0; top: 0; z-index: 0;";
         stage_canvas.width=block._u * block.stage._width ;
         stage_canvas.height=block._u * block.stage._height;
         stage_canvas.style.border="solid 1px "+block.stage._background_dark;
@@ -53,9 +67,34 @@ block.stage={
         }
        ctx.stroke();
     },
+    render:function(){
+        var stage=document.getElementById("foreground_stage");
+        var ctx = stage.getContext("2d");
+        
+        for(var j=0;j<block.stage._height;j++){
+            for(var i=0;i<block.stage._width;i++){
+                if (block.stage._map[j][i]==1){
+                    ctx.fillStyle="#CCCCCC";
+                    ctx.fillRect(i*block._u,j*block._u,block._u,block._u);
+                }else{
+                    ctx.clearRect(i*block._u,j*block._u,block._u,block._u);
+                }
+                
+            }
+        }
+    },
+    foreground_stage:function(){
+        var stage_canvas=document.createElement("canvas");
+        stage_canvas.id="foreground_stage";
+        stage_canvas.width=block._u * block.stage._width ;
+        stage_canvas.height=block._u * block.stage._height;
+        var container=document.getElementById("container");
+        container.appendChild(stage_canvas);
+    },
     init:function(){
         this.build_map();
         this.draw_stage();
+        this.foreground_stage();
     },
     
 }
