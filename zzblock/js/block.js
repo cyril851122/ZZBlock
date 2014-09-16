@@ -1,5 +1,6 @@
 var block={
     _u: 30,
+    _score:0,
     init: function(){
         block.stage.init();
         block.event.keyevent.binding();

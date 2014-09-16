@@ -16,7 +16,7 @@ block.event={
             }else{
                 block.event.landing(shape);
                 if (shape._row==0) {            //Game over
-                    
+                    alert("Your Score: "+block._score);
                     block.event.stop_falling_();
                     block.current_shape=null;
                 }else{
@@ -118,14 +118,25 @@ block.event={
                     break;
                 } 
             }
+            
             if (remove_flag==true) {
-                
                 indexes.push(j);
             }
         }
-        
         if (indexes.length>0) {
-            console.log(indexes);
+            switch (indexes.length) {
+                case 1:
+                    block._score+=10;
+                    break;
+                case 2:
+                    block._score+=30;
+                    break;
+                case 3:
+                    block._score+=50;
+                    break;
+                case 4:
+                    block._score+=80;
+            }
             block.stage.erase(indexes);
         }
     }

@@ -3,7 +3,7 @@
 block.shape=function(config){
     this._array=config.array;
     this._row=0;
-    this._col=4;
+    this._col=3;
     this._color=config.color;
     
 };

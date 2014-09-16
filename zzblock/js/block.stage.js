@@ -23,6 +23,7 @@ block.stage={
     erase:function(indexes){
         
         for (var i in indexes){
+            
             block.stage._map.splice(indexes[i],1);
             var row=[];
             for(var i=0 ; i<block.stage._width;i++){
