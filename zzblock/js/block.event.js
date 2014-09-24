@@ -16,7 +16,7 @@ block.event={
             }else{
                 block.event.landing(shape);
                 if (shape._row==0) {            //Game over
-                    alert("Your Score: "+block._score);
+                    
                     block.event.stop_falling_();
                     block.current_shape=null;
                 }else{
@@ -138,6 +138,7 @@ block.event={
                     block._score+=80;
             }
             block.stage.erase(indexes);
+            
         }
     }
 }

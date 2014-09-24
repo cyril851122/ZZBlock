@@ -19,11 +19,21 @@
     </head>
     <body>
         <div id="container"></div>
-    
+        <div style="margin-top: 500px">
+            <div>Left - Down - Right - A - S</div>
+            <div>Your score is <span id="score">0</span></div>
+        </div>
         <script>
             block.init();
             block.start();
-
+            
+            function set_score() {
+                var myspan=document.getElementById("score");
+                myspan.innerHTML=block._score;
+               
+                
+            }
+            setInterval(set_score,1000);
         </script>    
     </body>
     
